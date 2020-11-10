@@ -13,7 +13,7 @@
 | [SphereCollider]({{book.api}}classes/core.aspherecollider.html) | 球型碰撞体 |
 
 
-给物体添加碰撞体的方法请参考[射线投射]({{book.docs}}collision-system/ray.html)。
+给物体添加碰撞体的方法请参考[射线投射]({{book.docs}}component/ray.html)。
 
 ## 使用方法
 

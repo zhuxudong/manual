@@ -1,6 +1,6 @@
 # 引擎
 
-Engine 在 Oasis 引擎中扮演着总控制器的角色，他能够控制画布（支持跨平台）的一切行为，包括[资源管理]({{book.docs}}structure/resource-manager.html)、[场景管理]({{book.docs}}structure/scene.html)、执行/暂停/继续、垂直同步等功能。
+Engine 在 Oasis 引擎中扮演着总控制器的角色，他能够控制画布（支持跨平台）的一切行为，包括[资源管理]({{book.docs}}resource/resource-manager.html)、[场景管理]({{book.docs}}structure/scene.html)、执行/暂停/继续、垂直同步等功能。
 
 
 ## 初始化
