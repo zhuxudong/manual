@@ -7,39 +7,6 @@
 
 **Ray** 模块提供了方便好用的射线检测功能。
 
-## 添加碰撞体
-
-需要给场景中的物体（[Entity]({{book.api}}classes/core.entity.html)）添加碰撞体组件（[Collider]({{book.api}}classes/core.collider.html)），物体才能在射线投射的时候被检测到。目前 **Collider** 模块提供以下模式的碰撞体组件：
-
-| 名称 | 解释 |
-| :--- | :--- |
-| [BoxCollider]({{book.api}}classes/core.boxcollider.html) | 包围盒碰撞体 |
-| [SphereCollider]({{book.api}}classes/core.aspherecollider.html) | 球型碰撞体 |
-| [PlaneCollider]({{book.api}}classes/core.planecollider.html) | 平面碰撞体 |
-
-
-添加碰撞体组件的方法如下：
-
-
-```typescript
-import { SphereCollider, BoxCollider, PlaneCollider } from 'oasis-engine';
-
-//-- 添加 BoxCollider
-let boxEntity = rootEntity.createChild('box');
-let boxCollider = boxEntity.addComponent(BoxCollider);
-boxCollider.setBoxCenterSize([0, 0, 0], [cubeSize, cubeSize, cubeSize]);  
-
-//-- 添加 SphereCollider
-let sphereEntity = rootEntity.createChild('sphere');
-let sphereCollider = sphereEntity.addComponent(SphereCollider);
-sphereCollider.setSphere([0, 0, 0], radius); 
-
-//-- 添加 PlaneCollider
-let planeEntity = rootEntity.createChild('plane');
-let planeCollider = planeEntity.addComponent(PlaneCollider);
-planeCollider.setPlane([0, 0, 0], [0, 1, 0]);
-```
-
 ## 使用射线投射
 
 在使用射线投射，首先要在代码中引入 [Ray]({{book.api}}classes/math.ray.html) 模块；然后生成射线，射线可以自定义生成，也可以通过相机（[camera]({{book.api}}classes/core.camera.html#viewportpointtoray)）将屏幕输入转化成射线；最后调用 `scene.raycast`  方法即可检测射线投射命中的碰撞体。代码如下：
