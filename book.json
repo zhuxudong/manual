@@ -9,7 +9,7 @@
       "-sharing"
   ],
   "variables": {
-    "api": "https://oasis-engine.github.io/api/0.1/",
-    "docs": "https://oasis-engine.github.io/docs/"
+    "api": "https://oasis-engine.github.io/0.1/api/",
+    "docs": "https://oasis-engine.github.io/0.1/manual/"
   }
 }
