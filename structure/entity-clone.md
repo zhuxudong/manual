@@ -45,7 +45,7 @@ console.log(cloneScript.c);// output is (1,1,1).
 除了默认的克隆方式外，引擎还提供了“克隆装饰器“对脚本字段的克隆方式进行定制。引擎内置四种克隆装饰：
 
 | 装饰器名称 | 装饰器释义 |
-| --- | --- |
+| :--- | :--- |
 | [ignoreClone]({{book.api}}modules/core.html#ignoreclone) | 克隆时对字段进行忽略。 |
 | [assignmentClone]({{book.api}}modules/core.html#assignmentclone) | ( 默认值，和不添加任何克隆装饰器等效) 克隆时对字段进行赋值。如果是基本类型则会拷贝值，如果是引用类型则会拷贝其引用地址。 |
 | [shallowClone]({{book.api}}modules/core.html#shallowclone) | 克隆时对字段进行浅克隆。克隆后会保持自身引用独立，并使用赋值的方式克隆其内部所有字段（如果内部字段是基本类型则会拷贝值，如果内部字段是引用类型则会拷贝其引用地址）。|

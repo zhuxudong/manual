@@ -8,6 +8,7 @@
   * [引擎](structure/engine.md)
   * [场景](structure/scene.md)
   * [实体](structure/entity.md)
+    * [克隆](structure/entity-clone.md)
   * [脚本组件](structure/script.md)
   * [资源管理与加载](structure/resource-manager.md)
 * 资源系统
