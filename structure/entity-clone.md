@@ -59,7 +59,7 @@ class CustomScript extends Script{
   @ignoreClone
   a:boolean = false;
   
-  /** number type.
+  /** number type.*/
   @assignmentClone
   b:number = 1;
   
