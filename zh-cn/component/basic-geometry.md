@@ -2,7 +2,7 @@
 
 目前提供了以下几种形状的几何体：
 
-- [CuboidGeometry]({{book.api}}classes/core.cuboidgeometry.html) **立方体**
+- [CuboidGeometry](${book.api}classes/core.cuboidgeometry.html) **立方体**
 
 ```typescript
 let sphere = rootEntity.createChild('sphere');
@@ -16,7 +16,7 @@ mtl.shininess = 100;
 sphereRenderer.setMaterial(mtl);
 ```
 
-- [SphereGeometry]({{book.api}}classes/core.spheregeometry.html) **球体**
+- [SphereGeometry](${book.api}classes/core.spheregeometry.html) **球体**
 
 ```typescript
 let sphere = rootEntity.createChild('sphere');
@@ -30,7 +30,7 @@ mtl.shininess = 100;
 sphereRenderer.setMaterial(mtl);
 ```
 
-- [PlaneGeometry]({{book.api}}classes/core.spheregeometry.html) **平面**
+- [PlaneGeometry](${book.api}classes/core.spheregeometry.html) **平面**
 
 ```typescript
 // 创建材质
@@ -44,7 +44,7 @@ sphereRenderer.geometry = new SphereGeometry(3, 32, 32);
 sphereRenderer.setMaterial(mtl);
 ```
 
-- [CircleGeometry]({{book.api}}classes/core.circlegeometry.html) **圆形**
+- [CircleGeometry](${book.api}classes/core.circlegeometry.html) **圆形**
 
 ```typescript
 let sphere = rootEntity.createChild('sphere');
@@ -58,7 +58,7 @@ mtl.shininess = 100;
 sphereRenderer.setMaterial(mtl);
 ```
 
-- [CylinderGeometry]({{book.api}}classes/core.cylindergeometry.html) **圆柱**
+- [CylinderGeometry](${book.api}classes/core.cylindergeometry.html) **圆柱**
 
 ```typescript
 let sphere = rootEntity.createChild('sphere');

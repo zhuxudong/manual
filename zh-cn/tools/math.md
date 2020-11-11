@@ -1,16 +1,16 @@
 # 数学库
 
-在一个渲染场景中，我们经常会对物体进行平移、旋转、缩放等操作（这些操作我们统一称为 [变换]({{book.docs}}component/transform.html) ），从而达到我们想要的互动效果。而这些变换的计算，我们一般都是通过向量、四元数、矩阵等来实现的，为此我们提供一个数学库来完成 *向量* 、*四元数* 、*矩阵* 等相关运算。
+在一个渲染场景中，我们经常会对物体进行平移、旋转、缩放等操作（这些操作我们统一称为 [变换](zh-cn/component/transform) ），从而达到我们想要的互动效果。而这些变换的计算，我们一般都是通过向量、四元数、矩阵等来实现的，为此我们提供一个数学库来完成 *向量* 、*四元数* 、*矩阵* 等相关运算。
 
 | 类型 | 解释 |
 | :--- | :--- |
-| [MathUtil]({{book.api}}classes/math.mathutil.html) | 工具类，提供比较、角度弧度转换等常用计算 |
-| [Matrix]({{book.api}}classes/math.matrix.html) | 默认的4x4矩阵，提供矩阵基本运算，变换相关运算 |
-| [Matrix3x3]({{book.api}}classes/math.matrix3x3.html) | 3x3矩阵，提供矩阵基本运算，变换相关运算 |
-| [Quaternion]({{book.api}}classes/math.quaternion.html) | 四元数，包含x、y、z、w分量，负责旋转相关的运算 |
-| [Vector2]({{book.api}}classes/math.vector2.html) | 二维向量，包含x、y分量 |
-| [Vector3]({{book.api}}classes/math.vector3.html) | 三维向量，包含x、y、z分量 |
-| [Vector4]({{book.api}}classes/math.vector4.html) | 四维向量，包含x、y、z、w分量 |
+| [MathUtil](${book.api}classes/math.mathutil.html) | 工具类，提供比较、角度弧度转换等常用计算 |
+| [Matrix](${book.api}classes/math.matrix.html) | 默认的4x4矩阵，提供矩阵基本运算，变换相关运算 |
+| [Matrix3x3](${book.api}classes/math.matrix3x3.html) | 3x3矩阵，提供矩阵基本运算，变换相关运算 |
+| [Quaternion](${book.api}classes/math.quaternion.html) | 四元数，包含x、y、z、w分量，负责旋转相关的运算 |
+| [Vector2](${book.api}classes/math.vector2.html) | 二维向量，包含x、y分量 |
+| [Vector3](${book.api}classes/math.vector3.html) | 三维向量，包含x、y、z分量 |
+| [Vector4](${book.api}classes/math.vector4.html) | 四维向量，包含x、y、z、w分量 |
 
 ## 向量
 
