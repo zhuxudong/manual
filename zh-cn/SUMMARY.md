@@ -26,7 +26,7 @@
   * [着色器](${book.manual}resource/shader.md)
 * 工具库
   * [数学库](${book.manual}tools/math.md)
-  * [数学库](${book.manual}tools/stats.md)
+  * [引擎状态](${book.manual}tools/stats.md)
 * 二方组件
   * [控制器](${book.manual}second-party-component/controls.md)
   * [帧缓冲拾取](${book.manual}second-party-component/framebuffer-picker.md)
