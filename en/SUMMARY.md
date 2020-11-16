@@ -1,1 +1,1 @@
-* [About Oasis Engine](en/README.md)
+* [About Oasis Engine](${book.manual}README.md)

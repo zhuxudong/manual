@@ -45,7 +45,7 @@
 
 ## 生成纹理
 
-在脚本中，我们可以通过 [ResourceManager](zh-cn/resource/resource-manager) 来加载 2D 纹理和立方纹理：
+在脚本中，我们可以通过 [ResourceManager](${book.manual}resource/resource-manager) 来加载 2D 纹理和立方纹理：
 
 ```typescript
 const textureResource = {
@@ -251,7 +251,7 @@ if (rhi.canIUse(GLCapabilityType.s3tc)) {
 }
 ```
 
-确定支持某种格式后,使用 [ResourceManager](zh-cn/resource/resource-manager) 进行资源加载
+确定支持某种格式后,使用 [ResourceManager](${book.manual}resource/resource-manager) 进行资源加载
 
 ```typescript
 const resource = {

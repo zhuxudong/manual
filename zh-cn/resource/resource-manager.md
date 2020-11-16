@@ -2,7 +2,7 @@
 
 3D 资源一般与 Engine 挂钩，我们使用挂载在 Engine 实例中的 [ResourceManager](${book.api}classes/core.engine.html#resourcemanager) 管理与加载资源。
 
-推荐用[脚本组件](zh-cn/component/script)的方式加载资源。[load](${book.api}classes/core.resourcemanager.html#load) 方法即可传入 url，也可以传入 [loadItem](${book.api}modules/core.html#loaditem)，也可以传入数组表示批量加载。
+推荐用[脚本组件](${book.manual}component/script)的方式加载资源。[load](${book.api}classes/core.resourcemanager.html#load) 方法即可传入 url，也可以传入 [loadItem](${book.api}modules/core.html#loaditem)，也可以传入数组表示批量加载。
 
 ```typescript
 export class ResourceScript extends Script {
@@ -71,7 +71,7 @@ engine.resourceManager.gc();
 
 ### 1. Texture2D
 
-> 更多纹理相关文档可查阅[纹理资源](zh-cn/resource/texture)。
+> 更多纹理相关文档可查阅[纹理资源](${book.manual}resource/texture)。
 
 ```typescript
 const texture2D = await this.engine.resourceManager.load("test.png");
@@ -83,7 +83,7 @@ this.engine.resourceManager.load({url: "test", type: AssetType.Texture2D});
 
 
 ### 2. TextureCube
-> 更多纹理相关文档可查阅[纹理资源](zh-cn/resource/texture)。
+> 更多纹理相关文档可查阅[纹理资源](${book.manual}resource/texture)。
 
 ```typescript
 const textureCube = await this.engine.resourceManager

@@ -13,7 +13,7 @@
 | [PlaneCollider](${book.api}classes/core.planecollider.html) | 平面碰撞体 |
 
 
-给物体添加碰撞体的方法请参考[射线投射](zh-cn/component/ray)。
+给物体添加碰撞体的方法请参考[射线投射](${book.manual}component/ray)。
 
 ## 使用方法
 
