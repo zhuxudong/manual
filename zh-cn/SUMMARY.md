@@ -4,7 +4,7 @@
   * [绘制一个 3D 模型](${book.manual}abc/model.md)
 * 核心
   * [引擎](${book.manual}structure/engine.md)
-    * [屏幕适配](${book.manual}structure/sceen-fit.md)
+    * [屏幕适配](${book.manual}structure/screen-fit.md)
   * [场景](${book.manual}structure/scene.md)
   * [实体](${book.manual}structure/entity.md)
     * [克隆](${book.manual}structure/entity-clone.md)
@@ -27,6 +27,7 @@
 * 工具库
   * [数学库](${book.manual}tools/math.md)
   * [引擎状态](${book.manual}tools/stats.md)
+  * [事件系统](${book.manual}tools/event.md)
 * 二方组件
   * [控制器](${book.manual}second-party-component/controls.md)
   * [帧缓冲拾取](${book.manual}second-party-component/framebuffer-picker.md)
