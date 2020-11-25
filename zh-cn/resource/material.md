@@ -4,13 +4,13 @@
 
 跟传统的 Blinn-Phong 等渲染方法相比，PBR 遵循能量守恒，符合物理规则，美术们只需要调整几个简单的参数，即使在复杂的场景中也能保证正确的渲染效果。
 
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1584452856854-672af239-983a-4ebf-b552-fb86f65cb48e.png#align=left&display=inline&height=720&margin=%5Bobject%20Object%5D&name=image.png&originHeight=720&originWidth=1719&size=2897357&status=done&style=none&width=1719)
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1578983052725-b7a50b9c-cf8c-4f84-b451-085efdbd83de.png?x-oss-process=image%2Fresize%2Cw_1492)
 
 # 常用参数介绍
 
 | 参数   | 应用                                                                                                                                                                                             |
 | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 基础颜色（[baseColorFactor](${book.api}classes/core.pbrmaterial.html#basecolorfactor)） | **基础颜色** \* **基础颜色纹理 = **最后的基础颜色。  基础颜色是物体的反照率值,与传统的漫反射颜色不同，它会同时贡献镜面反射和漫反射的颜色，我们可以通过上面提到过的金属度、粗糙度，来控制贡献比。 |
+| 基础颜色（[baseColorFactor](${book.api}classes/core.pbrmaterial.html#basecolorfactor)） | **基础颜色** \* **基础颜色纹理** = **最后的基础颜色**。  基础颜色是物体的反照率值,与传统的漫反射颜色不同，它会同时贡献镜面反射和漫反射的颜色，我们可以通过上面提到过的金属度、粗糙度，来控制贡献比。 |
 | 透明度模式（[alphaMode](${book.api}classes/core.pbrmaterial.html#alphamode)） | "OPAQUE"：不透明(默认)、"BLEND"：透明、"MASK"：透明度裁剪（注，如果开启了透明模式，一般需要设置渲染双面）。 |
 | 透明度（[opacity](${book.api}classes/core.pbrmaterial.html#opacity)） | 当设置为透明模式后，可以通过透明度来调整透明度。 |
 | 透明度裁剪值（[alphaCutoff](${book.api}classes/core.pbrmaterial.html#alphacutoff)） | 当设置为透明度裁剪模式后，可以设置裁剪值来指定裁剪小于此数值的片元。 |
