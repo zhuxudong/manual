@@ -40,21 +40,6 @@
 为了模拟这种全局光照，引擎提供了 PBR 光，即 [EnvironmentMapLight](${book.api}classes/core.environmentmaplight.html)。PBR 光是基于 [IBL](https://www.wikiwand.com/en/Image-based_lighting) 技术实现的，需要用户上传一张[**立方体纹理**](${book.manual}resource/texture?id=_2-%e7%ab%8b%e6%96%b9%e7%ba%b9%e7%90%86)来模拟周边环境。代码实现见 [纹理的应用-PBR 光](${book.manual}resource/texture?id=_3-pbr-%e5%85%89)。
 如果您已经使用了 PBR 材质，千万别忘了往场景中添加一个 [EnvironmentMapLight](${book.api}classes/core.environmentmaplight.html) 光～只有添加了之后，属于 PBR 的金属粗糙度、镜面反射、物理守恒、全局光照才会展现出效果。
 
-# 编辑器
-
-在 [Oasis Editor](https://oasistwa.alipay.com/3d/projects) 编辑器中，为了方便用户操作，已经封装了几种常见的材质类型。
-
-- 最常用的 Standard PBR 材质。提供了常用的参数调整。
-
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1606301889753-5c1d2cc4-e2a0-40e0-a6bb-d693876a0cd8.png#align=left&display=inline&height=482&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1466&originWidth=764&size=202323&status=done&style=none&width=251)
-
-- Standard(Specular) PBR。适用于部分习惯使用高光光泽度工作流的美术使用。
-
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1606302114558-85556641-39a7-4867-bf7d-8d2d61560fa8.png#align=left&display=inline&height=693&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1386&originWidth=766&size=180614&status=done&style=none&width=383)
-
-- unlit。不受光的影响，适用于简单的颜色渲染。
-
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1606302061509-a74838a9-7450-40f8-9f24-dbfca1857cf5.png#align=left&display=inline&height=244&margin=%5Bobject%20Object%5D&name=image.png&originHeight=488&originWidth=774&size=56430&status=done&style=none&width=387)
 
 # 常见 QA
 
