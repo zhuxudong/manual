@@ -24,11 +24,11 @@ entity.engine.sceneManager.activeScene._activeCameras[0]
 |:--|:--|:--|
 |通用|[isOrthographic](${book.api}classes/core.camera.html#isorthographic)|是否正交投影，默认是 `false`|
 ||[aspectRatio](${book.api}classes/core.camera.html#aspectratio)|画布宽高比，一般是根据 canvas 大小自动计算，也可以手动改变（不推荐）|
-|透视投影|[nearClipPlane](${book.api}classes/core.camera.html#nearclipplane)|近裁剪平面|
-||[farClipPlane](${book.api}classes/core.camera.html#farclipplane)|远裁剪平面|
-||[fieldOfView](${book.api}classes/core.camera.html#fieldofview)|视角|
+|          | [cullingMask](${book.api}classes/core.camera.html#cullingmask) | 裁剪遮罩，用来选择性地渲染场景中的渲染组件。                 |
+|透视投影| [nearClipPlane](${book.api}classes/core.camera.html#nearclipplane) | 近裁剪平面                                                   |
+|| [farClipPlane](${book.api}classes/core.camera.html#farclipplane) | 远裁剪平面                                                   |
+|| [fieldOfView](${book.api}classes/core.camera.html#fieldofview) | 视角                                                         |
 |正交投影|[orthographicSize](${book.api}classes/core.camera.html#orthographicsize)|正交模式下相机的一半尺寸|
-
 
 ## 类型
 
