@@ -5,9 +5,11 @@
 推荐用[脚本组件](${book.manual}component/script)的方式加载资源。[load](${book.api}classes/core.resourcemanager.html#load) 方法即可传入 url，也可以传入 [loadItem](${book.api}modules/core.html#loaditem)，也可以传入数组表示批量加载。
 
 ```typescript
+import type { GLTFResource } from '@oasis-engine/loader/types/gltf/glTF';
+
 export class ResourceScript extends Script {
 	async onAwake() {
-  	const gltf = await this.engine.resourceManager.load("test.gltf");
+  	const gltf = await this.engine.resourceManager.load<GLTFResource>("test.gltf");
     this.entity.addChild(gltf.defaultSceneRoot);
   }
 }
@@ -21,8 +23,6 @@ export class ResourceScript extends Script {
 ```typescript
 const [texture2D, glTFResource] = await this.engine.resourceManager.load(["a.png", "b.gltf"]);
 ```
-
-
 
 ### 2. 加载进度
 调用加载队列可以得到一个 [AssetPromise](${book.api}classes/core.assetpromise.html) 对象，可以使用 [onProgress](${book.api}interfaces/loader.options.html#onprogress) 获取加载进度。
@@ -74,7 +74,9 @@ engine.resourceManager.gc();
 > 更多纹理相关文档可查阅[纹理资源](${book.manual}resource/texture)。
 
 ```typescript
-const texture2D = await this.engine.resourceManager.load("test.png");
+import { Texture2D } from "oasis-engine";
+
+const texture2D = await this.engine.resourceManager.load<Texture2D>("test.png");
 ```
 加载器会使用 png、jpg 等后缀作为判断是 Texture2D 的依据，若使用 cdn 地址不带后缀，需要使用 type 去指定加载类型。例如
 ```typescript
@@ -86,6 +88,8 @@ this.engine.resourceManager.load({url: "test", type: AssetType.Texture2D});
 > 更多纹理相关文档可查阅[纹理资源](${book.manual}resource/texture)。
 
 ```typescript
+import { TextureCubeMap } from "oasis-engine";
+
 const textureCube = await this.engine.resourceManager
   .load<TextureCubeMap>({
   urls: [
@@ -107,7 +111,9 @@ const textureCube = await this.engine.resourceManager
 > 更多压缩纹理相关文档可查阅[压缩纹理](${book.api}resource/texture.html#压缩纹理)。
 
 ```typescript
-const compressedTexture2D = await this.engine.resourceManager.load("test.ktx");
+import { Texture2D } from "oasis-engine";
+
+const compressedTexture2D = await this.engine.resourceManager.load<Texture2D>("test.ktx");
 ```
 压缩纹理后缀一般为 `ktx` ，使用时需注意平台支持的压缩纹理格式。压缩纹理加载后得到的也是 [Texture2D](${book.api}classes/core.texture2d.html) 。
 
@@ -116,14 +122,20 @@ const compressedTexture2D = await this.engine.resourceManager.load("test.ktx");
 压缩的立方体纹理的加载和一般的立方体纹理加载不一样，是单独的一个二进制文件路径，而不需要 6 张图片的文件路径，但是需要指定为类型为 [AssetType.KTXCube](${book.api}enums/core.assettype.html#ktxcube)。因为 ResourceManager 无法根据后缀识别需要使用哪种特定类型的 Loader。
 
 ```typescript
-const compressedTextureCube = await this.engine.resourceManager.load({url: "test.ktx", type: AssetType.KTXCube});
-```
+import { TextureCubeMap } from "oasis-engine";
 
+const compressedTextureCube = await this.engine.resourceManager.load<TextureCubeMap>({url: "test.ktx", type: AssetType.KTXCube});
+```
 
 ### 5. glTF
 
 [glTF](https://www.khronos.org/gltf/) 资源如上面例子，得到的是一个 [GLTFResource](${book.api}classes/loader.gltfresource.html) 资源。加载成功后，会得到 glTF 里包含的 [Scene](${book.api}classes/core.scene.html)、[Entity](${book.api}classes/core.entity.html)、[Texture](${book.api}classes/core.texture.html)、[Material](${book.api}classes/core.material.html) 和 [AnimationClip](${book.api}classes/core.animationclip.html)。
 
+``` typescript
+import type { GLTFResource } from '@oasis-engine/loader/types/gltf/glTF';
+
+const gltf = await this.engine.resourceManager.load<GLTFResource>("test.gltf");
+```
 
 ### 6. 自定义加载器
 用户也可以自定义加载器来加载自定义的资源：
