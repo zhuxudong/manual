@@ -225,7 +225,7 @@ material.renderQueue = RenderQueue.Opaque + 1;
 ## 封装自定义材质
 这部分的内容是结合上文所有内容，给用户一个简单的封装示例，希望对您有所帮助：
 ```typescript
-import { Material, Shader, Color, Texture2D, BlendFactor, RenderQueueEnum } from "oasis-engine";
+import { Material, Shader, Color, Texture2D, BlendFactor, RenderQueue } from "oasis-engine";
 
 //-- Shader 代码
 const vertexSource = `
@@ -286,7 +286,7 @@ export class CustomMaterial extends Material{
     target.sourceColorBlendFactor = target.sourceAlphaBlendFactor = BlendFactor.SourceAlpha;
     target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendFactor.OneMinusSourceAlpha;
     depthState.writeEnabled = false;
-    this.renderQueue = RenderQueueEnum.Transparent;
+    this.renderQueue = RenderQueue.Transparent;
   }
 
   constructor(engine:Engine){
