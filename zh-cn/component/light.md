@@ -8,6 +8,7 @@
 |[DirectLight](${book.api}classes/core.directlight.html)|**方向光**，光线相互平行，几何属性只有方向|
 |[PointLight](${book.api}classes/core.pointlight.html) | **点光源**，一个点向周围所有方向发出的光，光照强度随光源距离衰减|
 |[SpotLight](${book.api}classes/core.spotlight.html) |**聚光灯**，由一个特定位置发出，向特定方向延伸的光，光照强度随光源距离衰减，光照区域为锥形，锥形边缘随张开角度衰减|
+|[EnvironmentMapLight](${book.api}classes/core.environmentmaplight.html) |**IBL**，基于图像的照明，用来实现全局光照。|
 
 
 ### 环境光
@@ -21,7 +22,7 @@ let lightEntity = rootEntity.createChild('ambient_light');
 
 // 创建一个方向光组件
 let ambientLight = lightEntity.addComponent(AmbientLight);
-ambientLight.color = new Vector3( 1.0, 1.0, 1.0 );
+ambientLight.color = new Color(1, 0, 0);
 ambientLight.intensity = 0.5;
 ```
 
@@ -35,7 +36,7 @@ ambientLight.intensity = 0.5;
 let lightEntity = rootEntity.createChild('light');
 
 let directLight = lightEntity.addComponent(DirectLight);
-directLight.color =  new Vector3(0.3, 0.3, 1);
+directLight.color =  new Color(0.3, 0.3, 1);
 directLight.intensity =  1;
 
 // 方向
@@ -55,7 +56,7 @@ let lightEntity = rootEntity.createChild('light');
 lightEntity.addComponent(PointLight)
 lightEntity.intensity = 1;
 lightEntity.distance = 100;
-lightEntity.color = new Vector3(0.3, 0.3, 1);
+lightEntity.color = new Color(0.3, 0.3, 1);
 lightEntity.transform.position = new Vector3(-10, 10, 10);
 ```
 ### 聚光灯
@@ -68,15 +69,17 @@ let lightEntity = rootEntity.createChild('light');
 
 lightEntity.addComponent(SpotLight);
 
-lightEntity.intensity = 1;
-lightEntity.distance = 100;
-lightEntity.decay = 0;
 lightEntity.angle = Math.PI / 12; // 散射角度
 lightEntity.penumbra = 0.2;       // 半影衰减系数
-lightEntity.color = new Vector3(0.3, 0.3, 1);
+lightEntity.color = new Color(0.3, 0.3, 1);
 
 lightEntity.transform.position = new Vector3(-10, 10, 10);
 lightEntity.transform.rotation = new Vector3(-45, -45, 0);
 ```
 
+### EnvironmentMapLight
+“点光源”、“方向光”，都属于“直接光”，即光线经过物体表面后直接进入我们眼睛，而我们现实世界中并不是这样的，光线其实会经过周围物体、空气尘埃的各种碰撞，最终才进入我们眼睛，这也正是为什么我们能看到不被光线直接照射到的地方，如图所示，左图是直接光照，我们只能看到球的右边是亮的，而右图是**全局光照**，光线经过各种碰撞进入我们眼睛，所以打亮了整个场景。仔细观察的话我们还能看到球的左下角还透出了红色墙壁的颜色，这正是因为光线的各种碰撞，产生的“颜色渗透”现象。
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/204641/1606301096780-0e941563-fbb3-473f-b75d-01b32c28a03e.png#align=left&display=inline&height=181&margin=%5Bobject%20Object%5D&name=image.png&originHeight=361&originWidth=720&size=176833&status=done&style=none&width=360)
+为了模拟这种全局光照，引擎提供了 [EnvironmentMapLight](${book.api}classes/core.environmentmaplight.html)。 EnvironmentMapLight 是基于 [IBL](https://www.wikiwand.com/en/Image-based_lighting) 技术实现的，需要用户上传一张[立方体纹理](${book.manual}resource/texture?id=_2-%e7%ab%8b%e6%96%b9%e7%ba%b9%e7%90%86)来模拟周边环境。代码实现见 [纹理的应用-PBR 光](${book.manual}resource/texture?id=_3-pbr-%e5%85%89)。
+如果您使用了 PBR 材质，千万别忘了往场景中添加一个 [EnvironmentMapLight](${book.api}classes/core.environmentmaplight.html) ～只有添加了之后，属于 PBR 的金属粗糙度、镜面反射、物理守恒、全局光照才会展现出效果。
 
