@@ -79,7 +79,7 @@ const material = new Material(engine, Shader.find("demo"));
 ## 上传 shader 变量
 > *attribute 逐顶点数据的上传请参考 [几何体渲染器](${book.manual}component/geometry-renderer.md),这里不再赘述。*
 
-除了内置的变量，我们可以在 shader 中上传任何自定义名字的变量，我们唯一要做的就是根据 shader 的变量类型，使用正确的接口。
+除了内置的变量，我们可以在 shader 中上传任何自定义名字的变量(建议使用 u_** 、 v_** 分别表示 uniform、varying变量)，我们唯一要做的就是根据 shader 的变量类型，使用正确的接口。
 上传接口全部保存在 [ShaderData](${book.api}classes/core.shaderdata.html) 中，而 shaderData 实例对象又分别保存在引擎的四大类 [Scene](${book.api}classes/core.scene.html)、[Camera](${book.api}classes/core.camera.html)、[Renderer](${book.api}classes/core.renderer.html)、[Material](${book.api}classes/core.material.html) 中，我们只需要分别往这些 shaderData 中调用接口，上传变量，引擎便会在底层自动帮我们组装这些数据，并进行判重等性能的优化。
 
 ![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/204641/1611133258641-e98a4d68-39f0-4274-9810-a35e3566444f.png?x-oss-process=image%2Fresize%2Cw_1492)
