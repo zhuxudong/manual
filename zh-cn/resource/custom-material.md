@@ -1,6 +1,8 @@
 # 自定义材质
 
-业务中可能有一些特殊的渲染需求，例如在物体表面渲染特殊的动画等，这时候就需要“自定义材质”去实现。通过直接使用 _material_ 这个模块中的 [Material](${book.api}classes/core.material.html) 和 [Shader](${book.api}classes/core.shader.html) 这两个类，就可以将自己定义的 Shader 代码整合进入引擎的渲染流程。
+业务中可能有一些特殊的渲染需求，例如毛发效果，这时候就需要“自定义材质”去实现。通过使用 _material_ 这个模块中的 [Material](${book.api}classes/core.material.html) 和 [Shader](${book.api}classes/core.shader.html) 这两个类，就可以将自己定义的 Shader 代码整合进入引擎的渲染流程。
+
+![](https://www.techpowerup.com/img/nRXJmG76dIL7Krlg.jpg)
 
 ## 创建 shader
 [Shader](${book.api}classes/core.shader.html) 封装了顶点着色器、片元着色器、着色器预编译、平台精度、平台差异性。他的创建和使用非常方便，用户只需要关注 shader 算法本身，而不用纠结于使用什么精度，亦或是使用 GLSL 哪个版本的写法。
@@ -223,7 +225,7 @@ material.renderQueue = RenderQueue.Opaque + 1;
 ## 封装自定义材质
 这部分的内容是结合上文所有内容，给用户一个简单的封装示例，希望对您有所帮助：
 ```typescript
-import { Material, Shader, Color, Texture2D } from "oasis-engine";
+import { Material, Shader, Color, Texture2D, BlendFactor, RenderQueueEnum } from "oasis-engine";
 
 //-- Shader 代码
 const vertexSource = `
@@ -284,7 +286,7 @@ export class CustomMaterial extends Material{
     target.sourceColorBlendFactor = target.sourceAlphaBlendFactor = BlendFactor.SourceAlpha;
     target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendFactor.OneMinusSourceAlpha;
     depthState.writeEnabled = false;
-    this.renderQueue = RenderQueue.Transparent;
+    this.renderQueue = RenderQueueEnum.Transparent;
   }
 
   constructor(engine:Engine){
