@@ -24,7 +24,7 @@
   * [资源管理与加载](${book.manual}resource/resource-manager.md)
   * [纹理](${book.manual}resource/texture.md)
   * [材质](${book.manual}resource/material.md)
-  * [着色器](${book.manual}resource/shader.md)
+  * [自定义材质](${book.manual}resource/custom-material.md)
 * 工具库
   * [数学库](${book.manual}tools/math.md)
   * [引擎状态](${book.manual}tools/stats.md)
