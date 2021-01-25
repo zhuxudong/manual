@@ -208,7 +208,7 @@ const depthState = renderState.depthState;
 depthState.writeEnabled = false;
 
 // 3. 设置透明渲染队列 （后面会讲为什么）
-material.renderQueue = RenderQueue.Transparent;
+material.renderQueueType = RenderQueueType.Transparent;
 ```
 有关渲染状态的更多选项可以分别查看相应的[API 文档](${book.api}classes/core.renderstate.html) 
 
@@ -216,16 +216,16 @@ material.renderQueue = RenderQueue.Transparent;
 
 
 ## 渲染队列
-至此，自定义材质已经非常完善了，但是也许我们还需要对物体的渲染顺序做一些处理，比如透明物体的渲染一般都是放在非透明队列后面的，因此，引擎提供了 [渲染队列（RenderQueue）](${book.api}classes/core.renderqueue.html) ，我们设置材质的渲染队列，可以决定这个材质在当前场景中的渲染顺序，引擎底层会对不同范围的渲染队列进行一些特殊处理，如 [RenderQueue.Transparent](${book.api}classes/core.renderqueue.html#transparent) 会从远到近进行渲染。值得注意的是渲染队列的值可以是枚举值加上任何自定义数字。
+至此，自定义材质已经非常完善了，但是也许我们还需要对物体的渲染顺序做一些处理，比如透明物体的渲染一般都是放在非透明队列后面的，因此，引擎提供了 [渲染队列（RenderQueueType）](${book.api}classes/core.renderqueuetype.html) ，我们设置材质的渲染队列，可以决定这个材质在当前场景中的渲染顺序，引擎底层会对不同范围的渲染队列进行一些特殊处理，如 [RenderQueueType.Transparent](${book.api}classes/core.renderqueuetype.html#transparent) 会从远到近进行渲染。值得注意的是渲染队列的值可以是枚举值加上任何自定义数字。
 ```typescript
-material.renderQueue = RenderQueue.Opaque + 1;
+material.renderQueueType = RenderQueueType.Opaque + 1;
 ```
 
 
 ## 封装自定义材质
 这部分的内容是结合上文所有内容，给用户一个简单的封装示例，希望对您有所帮助：
 ```typescript
-import { Material, Shader, Color, Texture2D, BlendFactor, RenderQueue } from "oasis-engine";
+import { Material, Shader, Color, Texture2D, BlendFactor, RenderQueueType } from "oasis-engine";
 
 //-- Shader 代码
 const vertexSource = `
@@ -286,7 +286,7 @@ export class CustomMaterial extends Material{
     target.sourceColorBlendFactor = target.sourceAlphaBlendFactor = BlendFactor.SourceAlpha;
     target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendFactor.OneMinusSourceAlpha;
     depthState.writeEnabled = false;
-    this.renderQueue = RenderQueue.Transparent;
+    this.renderQueueType = RenderQueueType.Transparent;
   }
 
   constructor(engine:Engine){
