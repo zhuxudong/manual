@@ -1,13 +1,21 @@
 # 数学库
 
-在一个渲染场景中，我们经常会对物体进行平移、旋转、缩放等操作（这些操作我们统一称为 [变换](${book.manual}component/transform) ），从而达到我们想要的互动效果。而这些变换的计算，我们一般都是通过向量、四元数、矩阵等来实现的，为此我们提供一个数学库来完成 *向量* 、*四元数* 、*矩阵* 等相关运算。
+在一个渲染场景中，我们经常会对物体进行平移、旋转、缩放等操作（这些操作我们统一称为 [变换](${book.manual}component/transform) ），从而达到我们想要的互动效果。而这些变换的计算，我们一般都是通过向量、四元数、矩阵等来实现的，为此我们提供一个数学库来完成 *向量* 、*四元数* 、*矩阵* 等相关运算。除此之外，数学库还提供了更为丰富的类来帮助我们描述空间中的 *点* *线* *面* *几何体*，以及判断它们在三维空间中的相交、位置关系等。
+
 
 | 类型 | 解释 |
 | :--- | :--- |
+| [BoundingBox](${book.api}classes/math.boundingbox.html) | AABB 包围盒 |
+| [BoundingFrustum](${book.api}classes/math.boundingfrustum.html) | 视锥体 |
+| [BoundingSphere](${book.api}classes/math.boundingsphere.html) | 包围球 |
+| [CollisionUtil](${book.api}classes/math.collisionutil.html) | 提供很多静态方式，用来判断空间中各个物体之间的相交、位置关系等 |
+| [Color](${book.api}classes/math.color.html) | 颜色类，使用 RGBA 描述 |
 | [MathUtil](${book.api}classes/math.mathutil.html) | 工具类，提供比较、角度弧度转换等常用计算 |
 | [Matrix](${book.api}classes/math.matrix.html) | 默认的4x4矩阵，提供矩阵基本运算，变换相关运算 |
 | [Matrix3x3](${book.api}classes/math.matrix3x3.html) | 3x3矩阵，提供矩阵基本运算，变换相关运算 |
+| [Plane](${book.api}classes/math.plane.html) | 平面类，用来描述三维空间中的平面 |
 | [Quaternion](${book.api}classes/math.quaternion.html) | 四元数，包含x、y、z、w分量，负责旋转相关的运算 |
+| [Ray](${book.api}classes/math.ray.html) | 射线类，用来描述三维空间中的射线 |
 | [Vector2](${book.api}classes/math.vector2.html) | 二维向量，包含x、y分量 |
 | [Vector3](${book.api}classes/math.vector3.html) | 三维向量，包含x、y、z分量 |
 | [Vector4](${book.api}classes/math.vector4.html) | 四维向量，包含x、y、z、w分量 |
@@ -164,4 +172,233 @@ m7.transpose();
 const axis = new Vector3(0, 1, 0); 
 const out4 = new Matrix();
 Matrix.rotationAxisAngle(axis, Math.PI * 0.25, out4);
+```
+
+## Color
+
+```typescript
+import { Color } from "@oasis-engine/math";
+
+// 创建 Color 对象
+const color1 = new Color(1, 0.5, 0.5, 1);
+const color2 = new Color();
+color2.r = 1;
+color2.g = 0.5;
+color2.b = 0.5;
+color2.a = 1;
+
+// linear 空间转 gamma 空间
+const gammaColor = new Color();
+color1.toGamma(gammaColor);
+
+// gamma 空间转 linear 空间
+const linearColor = new Color();
+color2.toLinear(linearColor);
+```
+
+## 平面
+```typescript
+import { Plane, Vector3 } from "@oasis-engine/math";
+
+// 通过三角形的三个顶点创建平面
+const point1 = new Vector3(0, 1, 0);
+const point2 = new Vector3(0, 1, 1);
+const point3 = new Vector3(1, 1, 0);
+const plane1 = new Plane();
+Plane.fromPoints(point1, point2, point3, plane1);
+// 通过平面的法线以及法线距离原点距离创建平面
+const plane2 = new Plane(new Vector3(0, 1, 0), -1);
+```
+
+## 包围盒
+
+```typescript
+import { BoundingBox, BoundingSphere, Matrix, Vector3 } from "@oasis-engine/math";
+
+// 通过不同的方式创建同样的包围盒
+const box1 = new BoundingBox();
+const box2 = new BoundingBox();
+const box3 = new BoundingBox();
+
+// 通过中心点和盒子范围来创建
+BoundingBox.fromCenterAndExtent(new Vector3(0, 0, 0), new Vector3(1, 1, 1), box1);
+
+// 通过很多点来创建
+const points = [
+  new Vector3(0, 0, 0),
+  new Vector3(-1, 0, 0),
+  new Vector3(1, 0, 0),
+  new Vector3(0, 1, 0),
+  new Vector3(0, 1, 1),
+  new Vector3(1, 0, 1),
+  new Vector3(0, 0.5, 0.5),
+  new Vector3(0, -0.5, 0.5),
+  new Vector3(0, -1, 0.5),
+  new Vector3(0, 0, -1),
+];
+BoundingBox.fromPoints(points, box2);
+
+// 通过包围球来创建
+const sphere = new BoundingSphere(new Vector3(0, 0, 0), 1);
+BoundingBox.fromSphere(sphere, box3);
+
+// 通过矩阵来对包围盒进行变换
+const box = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(1, 1, 1));
+const matrix = new Matrix(
+  2, 0, 0, 0,
+  0, 2, 0, 0,
+  0, 0, 2, 0,
+  1, 0.5, -1, 1
+);
+const newBox = new BoundingBox();
+BoundingBox.transform(box, matrix, newBox);
+
+// 合并两个包围盒 box1, box2 成为一个新的包围盒 box
+BoundingBox.merge(box1, box2, box);
+
+// 获取包围盒的中心点和范围
+const center = new Vector3();
+box.getCenter(center);
+const extent = new Vector3();
+box.getExtent(extent);
+
+// 获取包围盒的8个顶点
+const corners = [
+  new Vector3(), new Vector3(), new Vector3(), new Vector3(),
+  new Vector3(), new Vector3(), new Vector3(), new Vector3()
+];
+box.getCorners(corners);
+```
+
+## 包围球
+```typescript
+import { BoundingBox, BoundingSphere, Vector3 } from "@oasis-engine/math";
+
+// 通过不同方式来创建包围球
+const sphere1 = new BoundingSphere();
+const sphere2 = new BoundingSphere();
+
+// 通过很多点来创建
+const points = [
+  new Vector3(0, 0, 0),
+  new Vector3(-1, 0, 0),
+  new Vector3(0, 0, 0),
+  new Vector3(0, 1, 0),
+  new Vector3(1, 1, 1),
+  new Vector3(0, 0, 1),
+  new Vector3(-1, -0.5, -0.5),
+  new Vector3(0, -0.5, -0.5),
+  new Vector3(1, 0, -1),
+  new Vector3(0, -1, 0),
+];
+BoundingSphere.fromPoints(points, sphere1);
+
+// 通过包围盒来创建
+const box = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(1, 1, 1));
+BoundingSphere.fromBox(box, sphere2);
+```
+
+## 视锥体
+```typescript
+import { BoundingBox, BoundingSphere, BoundingFrustum,Matrix, Vector3 } from "@oasis-engine/math";
+
+// 根据 VP 矩阵创建视锥体，实际项目中，一般从相机中获取 view matrix 和 projection matrix
+const viewMatrix = new Matrix(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, -20, 1);
+const projectionMatrix = new Matrix(0.03954802080988884, 0, 0, 0, 0, 0.10000000149011612, 0, 0, 0, 0, -0.0200200192630291, 0, -0, -0, -1.0020020008087158, 1);
+const vpMatrix = new Matrix();
+Matrix.multiply(projectionMatrix, viewMatrix, vpMatrix);
+const frustum = new BoundingFrustum(vpMatrix);
+
+// 判断是否和 AABB 包围盒相交
+const box1 = new BoundingBox(new Vector3(-2, -2, -2), new Vector3(2, 2, 2));
+const isIntersect1 = frustum.intersectsBox(box1);
+const box2 = new BoundingBox(new Vector3(-32, -2, -2), new Vector3(-28, 2, 2));
+const isIntersect2 = frustum.intersectsBox(box2);
+
+// 判断是否和包围球相交
+const sphere1 = new BoundingSphere();
+BoundingSphere.fromBox(box1, sphere1);
+const isIntersect3 = frustum.intersectsSphere(sphere1);
+const sphere2 = new BoundingSphere();
+BoundingSphere.fromBox(box2, sphere2);
+const isIntersect4 = frustum.intersectsSphere(sphere2);
+```
+## 射线
+
+```typescript
+import { BoundingBox, BoundingSphere, Plane, Ray, Vector3 } from "@oasis-engine/math";
+
+// 创建 ray
+const ray = new Ray(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+const plane = new Plane(new Vector3(0, 1, 0), -3);
+// 判断射线是否和平面相交，相交的话 distance 为射线到平面距离，不相交的话 distance 为 -1
+let distance = ray.intersectPlane(plane);
+
+const sphere = new BoundingSphere(new Vector3(0, 5, 0), 1);
+// 判断射线是否和包围球相交，相交的话 distance 为射线到平面距离，不相交的话 distance 为 -1
+distance = ray.intersectSphere(sphere);
+
+const box = new BoundingBox();
+BoundingBox.fromCenterAndExtent(new Vector3(0, 20, 0), new Vector3(5, 5, 5), box);
+// 判断射线是否和包围盒 (AABB) 相交，相交的话 distance 为射线到平面距离，不相交的话 distance 为 -1
+distance = ray.intersectBox(box);
+
+// 到射线起点指定距离的点
+const out = new Vector3();
+ray.getPoint(10, out);
+```
+
+## CollisionUtil
+
+```typescript
+import { 
+  BoundingBox,
+  BoundingSphere,
+  BoundingFrustum,
+  Matrix,
+  Plane,
+  Ray,
+  Vector3,
+  CollisionUtil
+} from "@oasis-engine/math";
+
+const plane = new Plane(new Vector3(0, 1, 0), -5);
+const viewMatrix = new Matrix(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, -20, 1);
+const projectionMatrix = new Matrix(0.03954802080988884, 0, 0, 0, 0, 0.10000000149011612, 0, 0, 0, 0, -0.0200200192630291, 0, -0, -0, -1.0020020008087158, 1);
+const vpMatrix = new Matrix();
+Matrix.multiply(projectionMatrix, viewMatrix, vpMatrix);
+const frustum = new BoundingFrustum(vpMatrix);
+
+// 点和面之间的距离
+const point = new Vector3(0, 10, 0);
+let distance = CollisionUtil.distancePlaneAndPoint(plane, point);
+
+// 判断点和面的空间关系
+const point1 = new Vector3(0, 10, 0);
+const point2 = new Vector3(2, 5, -9);
+const point3 = new Vector3(0, 3, 0);
+const intersection1 = CollisionUtil.intersectsPlaneAndPoint(plane, point1);
+const intersection2 = CollisionUtil.intersectsPlaneAndPoint(plane, point2);
+const intersection3 = CollisionUtil.intersectsPlaneAndPoint(plane, point3);
+
+// 判断面和包围盒的空间关系
+const box1 = new BoundingBox(new Vector3(-1, 6, -2), new Vector3(1, 10, 3));
+const box2 = new BoundingBox(new Vector3(-1, 5, -2), new Vector3(1, 10, 3));
+const box3 = new BoundingBox(new Vector3(-1, 4, -2), new Vector3(1, 5, 3));
+const box4 = new BoundingBox(new Vector3(-1, -5, -2), new Vector3(1, 4.9, 3));
+const intersection11 = CollisionUtil.intersectsPlaneAndBox(plane, box1);
+const intersection22 = CollisionUtil.intersectsPlaneAndBox(plane, box2);
+const intersection33 = CollisionUtil.intersectsPlaneAndBox(plane, box3);
+const intersection44 = CollisionUtil.intersectsPlaneAndBox(plane, box4);
+
+// 判断射线和平面的空间关系
+const ray1 = new Ray(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+const ray2 = new Ray(new Vector3(0, 0, 0), new Vector3(0, -1, 0));
+const distance1 = CollisionUtil.intersectsRayAndPlane(ray1, plane);
+const distance2 = CollisionUtil.intersectsRayAndPlane(ray2, plane);
+
+// 判断视锥体和包围盒的空间关系
+const contain1 = CollisionUtil.frustumContainsBox(frustum, box1);
+const contain2 = CollisionUtil.frustumContainsBox(frustum, box2);
+const contain3 = CollisionUtil.frustumContainsBox(frustum, box3);
 ```
