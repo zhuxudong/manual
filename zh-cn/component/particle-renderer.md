@@ -1,6 +1,6 @@
 # 粒子动画
 
-Oasis Engine 的粒子渲染器[ParticleRenderer](${book.api}classes/core.particlerenderer.html) 是常用的渲染组件，具备丰富的属性，通过各个属性值达到绚丽多彩的粒子效果。
+Oasis Engine 的粒子渲染器 [ParticleRenderer](${book.api}classes/core.particlerenderer.html) 是常用的渲染组件，具备丰富的属性，通过各个属性值达到绚丽多彩的粒子效果。
 
 ```typescript
 let particles: ParticleRenderer = particleEntity.addComponent(ParticleRenderer);
@@ -40,7 +40,7 @@ particleComp.stop();
 - [`colorRandomness`](${book.api})，颜色随机因子，取值在 0~1 之间，颜色的 R、G、B通道的色值会分别在随机因子范围内取一个随机值，然后截取在 0~1 范围内。
 - [`isUseOriginColor`](${book.api}) ：是否使用图片原色，为 `true` (默认) 时使用图片原色，为 `false`  时，图片原色混合用户配置的颜色，可以在原图的基础上混合出任意的颜色：
 
-  ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2019/png/161276/1566567187067-d4067842-c5b3-43f8-a936-395c628ce97c.png#align=left&display=inline&height=250&margin=%5Bobject%20Object%5D&name=image.png&originHeight=499&originWidth=1009&size=506372&status=done&style=none&width=504.5)
+  ![image.png](https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*3Md4RKo0YjsAAAAAAAAAAAAAARQnAQ)
 
 - [`alpha`](${book.api})：透明度。
 - [`alphaRandomness`](${book.api})：透明度随机因子。
@@ -61,11 +61,11 @@ particleComp.stop();
 - [`rotateVelocityRandomness`](${book.api}classes/core.particlerenderer.html#rotatevelocityrandomness): 旋转速度随机因子。
 - [`isRotateToVelocity`](${book.api}classes/core.particlerenderer.html#isrotatetovelocity)：是否跟随粒子运动速度的方向，默认 `false`，为 `true`  时，将粒子贴图的单位向量旋转至粒子运动速度的方向，例如烟花：
 
-  ![xi.gif](https://intranetproxy.alipay.com/skylark/lark/0/2019/gif/161276/1566567277218-594ec692-7608-4b5a-8aff-05e6cea2b62f.gif#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&name=xi.gif&originHeight=489&originWidth=494&size=345464&status=done&style=none&width=389)
+  ![xi.gif](https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*elfKT7N16T0AAAAAAAAAAAAAARQnAQ)
 
   为 `false` 时，无旋转，适用于方向一致的场景，例如孔明灯：
 
-  ![xx.gif](https://intranetproxy.alipay.com/skylark/lark/0/2019/gif/161276/1566567330802-a71c903d-5f3c-4daa-a058-d076df2372ed.gif#align=left&display=inline&height=389&margin=%5Bobject%20Object%5D&name=xx.gif&originHeight=489&originWidth=494&size=1532055&status=done&style=none&width=393)
+  ![xx.gif](https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*F5CqSrNuhUoAAAAAAAAAAAAAARQnAQ)
 
 - [`is2d`](${book.api}classes/core.particlerenderer.html#is2d)：是否是 2D 粒子，默认 `true`。
 - [`size`](${book.api}classes/core.particlerenderer.html#size)：粒子大小。
@@ -73,4 +73,8 @@ particleComp.stop();
 - [`scale`](${book.api}classes/core.particlerenderer.html#scale)：粒子缩放。
 - [`isScaleByLifetime`](${book.api}classes/core.particlerenderer.html#isscalebylifetime) ：是否随生命周期缩小至消失。为 `true` 时粒子会越来越小，为 `false` 时粒子大小保持不变，只有透明度会降低，可用于制作淡出消失的效果：
 
-  ![](https://gw.alipayobjects.com/zos/rmsportal/ZtxLeEHDUbWvGliQmWMu.gif#align=left&display=inline&height=534&margin=%5Bobject%20Object%5D&originHeight=638&originWidth=478&status=done&style=none&width=400) |
+  ![](https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*BztcTq-Vp3AAAAAAAAAAAAAAARQnAQ)
+
+  ## 方法
+- `start()`：开始播放。
+- `stop()`：停止播放。
