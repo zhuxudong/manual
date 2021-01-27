@@ -37,7 +37,7 @@ particleComp.stop();
 ### 纹理颜色
 - [`texture`](${book.api}classes/core.particlerenderer.html#texture) ： 粒子形状贴图。
 - [`color`](${book.api}classes/core.particlerenderer.html#color)：粒子颜色。
-- [`colorRandomness`](${book.api})，颜色随机因子，取值在 0~1 之间，颜色的 R、G、B通道的色值会分别在随机因子范围内取一个随机值，然后截取在 0~1 范围内。
+- [`colorRandomness`](${book.api})，颜色随机因子，取值在 `0~1` 之间，颜色的 R、G、B通道的色值会分别在随机因子范围内取一个随机值，然后截取在 `0~1` 范围内。
 - [`isUseOriginColor`](${book.api}) ：是否使用图片原色，为 `true` (默认) 时使用图片原色，为 `false`  时，图片原色混合用户配置的颜色，可以在原图的基础上混合出任意的颜色：
 
   ![image.png](https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*3Md4RKo0YjsAAAAAAAAAAAAAARQnAQ)
@@ -56,7 +56,7 @@ particleComp.stop();
 - [`acceleration`](${book.api}classes/core.particlerenderer.html#acceleration)：加速度。
 - [`accelerationRandomness`](${book.api}core.particlerenderer.html#accelerationrandomness)：加速度随机因子。
 - [`angle`](${book.api}classes/core.particlerenderer.html#angle): 初始旋转角度。
-- [`angleRandomness`](${book.api}classes/core.particlerenderer.html#anglerandomness): 初始旋转角度随机因子，取值在 0~1 之间，例如：rotate 为 0，随机因子为 0，则生成的粒子角度均为 0，随机因子为 1，则生成的角度在 -PI~PI 之间随机。
+- [`angleRandomness`](${book.api}classes/core.particlerenderer.html#anglerandomness): 初始旋转角度随机因子，取值在 `0~1` 之间，例如：rotate 为 0，随机因子为 0，则生成的粒子角度均为 0，随机因子为 1，则生成的角度在 `-PI~PI` 之间随机。
 - [`rotateVelocity`](${book.api}classes/core.particlerenderer.html#rotatevelocity): 旋转速度。
 - [`rotateVelocityRandomness`](${book.api}classes/core.particlerenderer.html#rotatevelocityrandomness): 旋转速度随机因子。
 - [`isRotateToVelocity`](${book.api}classes/core.particlerenderer.html#isrotatetovelocity)：是否跟随粒子运动速度的方向，默认 `false`，为 `true`  时，将粒子贴图的单位向量旋转至粒子运动速度的方向，例如烟花：
