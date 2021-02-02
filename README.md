@@ -32,4 +32,4 @@
 
 # 附录
 
-- API 文档：[https://oasis-engine.github.io/api/0.1/globals.html](https://oasis-engine.github.io/api/0.1/globals.html)
+- API 文档：[https://oasis-engine.github.io/0.1/api/globals.html](https://oasis-engine.github.io/0.1/api/globals.html)
