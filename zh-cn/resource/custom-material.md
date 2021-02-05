@@ -197,7 +197,7 @@ const blendState = renderState.blendState;
 const target = blendState.targetBlendState;
 
 // src 混合因子为（As，As，As，As）
-target.sourceColorBlendFactor = target.sourceAlphaBlendFactor =BlendFactor.SourceColor;
+target.sourceColorBlendFactor = target.sourceAlphaBlendFactor =BlendFactor.SourceAlpha;
 // dst 混合因子为（1 - As，1 - As，1 - As，1 - As）。
 target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendFactor.OneMinusSourceAlpha;
 // 操作方式为 src + dst  */
