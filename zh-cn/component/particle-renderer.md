@@ -33,7 +33,7 @@ particleComp.stop();
 - [`lifetime`](${book.api}classes/core.particlerenderer.html#lifetime)：粒子的生命周期，单位秒。
 - [`startTimeRandomness`](${book.api}classes/core.particlerenderer.html#starttimerandomness)：开始时间随机因子。
 - [`isOnce`](${book.api}classes/core.particlerenderer.html#isonce) ：是否只发射一次，默认 `false` （循环发射）。
-- [`isAutoplay`](${book.api}classes/core.particlerenderer.html#isautoplay) ：是否自动播放，默认`true`。
+- [`playOnEnable`](${book.api}classes/core.particlerenderer.html#playonenable) ：是否自动播放，默认`true`。
 
 ### 材质
 - [`texture`](${book.api}classes/core.particlerenderer.html#texture) ： 粒子形状贴图。
