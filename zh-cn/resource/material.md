@@ -8,7 +8,7 @@
 // 获取想要修改的 renderer
 const renderer = entity.getComponent(MeshRenderer);
 // 获取 PBRMaterial
-const material = renderer.getSharedMaterial(0);
+const material = renderer.getMaterial();
 // 修改材质颜色
 material.baseColor.r = 0;
 ```
@@ -23,7 +23,7 @@ const material = new BlinnPhongMaterial(engine);
 material.diffuseColor.r = 0;
 
 // 替换 PBRMaterial，赋予 blinn-phong 材质
-const material = renderer.setSharedMaterial(0, material);
+const material = renderer.setMaterial(material);
 ```
 
 
@@ -40,8 +40,6 @@ const material = renderer.setSharedMaterial(0, material);
 | :--- | :--- |
 | 基础颜色（[baseColor](${book.api}classes/core.pbrmaterial.html#basecolor) )| **基础颜色** * **基础颜色纹理** = **最后的基础颜色**。  基础颜色是物体的反照率值,与传统的漫反射颜色不同，它会同时贡献镜面反射和漫反射的颜色，我们可以通过上面提到过的金属度、粗糙度，来控制贡献比。 |
 | 自发光颜色（[emissiveColor](${book.api}classes/core.pbrmaterial.html#emissivecolor)） | 使得即使没有光照也能渲染出颜色。 |
-| 透明度模式（[alphaMode](${book.api}classes/core.pbrmaterial.html#alphamode)） | "AlphaMode.Opaque"：不透明(默认)、"AlphaMode.Blend"：透明、"AlphaMode.CutOff"：透明度裁剪 |
-| 渲染双面（[doublesided](${book.api}classes/core.pbrmaterial.html#doublesided)） | true：渲染双面，不进行裁剪、false：背面裁剪，只渲染正面 |
 | 透明度（[opacity](${book.api}classes/core.pbrmaterial.html#opacity)） | 当设置为透明模式后，可以通过透明度来调整透明度。 |
 | 透明度裁剪值（[alphaCutoff](${book.api}classes/core.pbrmaterial.html#alphacutoff)） | 当设置为透明度裁剪模式后，可以设置裁剪值来指定裁剪小于此数值的片元。 |
 | 基础颜色纹理（[baseColorTexture](${book.api}classes/core.pbrmaterial.html#basecolortexture)） | 搭配基础颜色使用，是个相乘的关系。 |
@@ -49,7 +47,9 @@ const material = renderer.setSharedMaterial(0, material);
 | 法线纹理（[normalTexture](${book.api}classes/core.pbrmaterial.html#normaltexture)） | 可以设置法线纹理 ，在视觉上造成一种凹凸感，还可以通过法线强度来控制凹凸程度。 |
 | 自发射光纹理（[emissiveTexture](${book.api}classes/core.pbrmaterial.html#emissivetexture)） | 我们可以设置自发光纹理和自发光颜色（[emissiveFactor](${book.api}classes/core.pbrmaterial.html#emissivefactor)）达到自发光的效果，即使没有光照也能渲染出颜色。 |
 | 阴影遮蔽纹理（[occlusionTexture](${book.api}classes/core.pbrmaterial.html#occlusiontexture)） | 我们可以设置阴影遮蔽纹理来提升物体的阴影细节。 |
-
+| 透明度模式（[alphaMode](${book.api}classes/core.pbrmaterial.html#alphamode)） | "AlphaMode.Opaque"：不透明(默认)、"AlphaMode.Blend"：透明、"AlphaMode.CutOff"：透明度裁剪 |
+| 渲染双面（[doubleSided](${book.api}classes/core.pbrmaterial.html#doublesided)） | true：渲染双面，不进行裁剪、false：背面裁剪，只渲染正面 |
+| 纹理坐标的缩放与偏移（[tilingOffset](${book.api}classes/core.unlitmaterial.html#tilingoffset)） | 是一个 Vector4 数据，分别控制纹理坐标在 uv 方向上的缩放和偏移。 |
 
 ### 金属-粗糙度 参数介绍
 | 参数 | 应用 |
@@ -87,9 +87,12 @@ const material = renderer.setSharedMaterial(0, material);
 | 漫反射纹理（[diffuseTexture](${book.api}classes/core.blinnphongmaterial.html#diffusetexture)） | 搭配漫反射颜色使用，是个相乘的关系。 |
 | 镜面反射颜色（[specularColor](${book.api}classes/core.blinnphongmaterial.html#specularcolor)） | **镜面反射颜色 * 镜面反射纹理 = 最后的镜面反射颜色。** |
 | 镜面反射纹理（[specularTexture](${book.api}classes/core.blinnphongmaterial.html#speculartexture)） | 搭配镜面反射颜色使用，是个相乘的关系。 |
+| 法线纹理（[normalTexture](${book.api}classes/core.blinnphongmaterial.html#normaltexture)） | 可以设置法线纹理 ，在视觉上造成一种凹凸感，还可以通过法线强度来控制凹凸程度。 |
+| 法线强度（[normalIntensity ](${book.api}classes/core.blinnphongmaterial.html#normalintensity)） | 法线强度，用来控制凹凸程度。 |
 | 镜面反射系数（[shininess](${book.api}classes/core.blinnphongmaterial.html#shininess)） | 值越大镜面反射效果越聚拢。 |
-| 透明度模式（[alphaMode](${book.api}classes/core.blinnphongmaterial.html#alphamode)） | "AlphaMode.Opaque"：不透明(默认)、"AlphaMode.Blend"：透明 |
-| 渲染双面（[doublesided](${book.api}classes/core.blinnphongmaterial.html#doublesided)） | true：渲染双面，不进行裁剪、false：背面裁剪，只渲染正面 |
+| 透明度模式（[alphaMode](${book.api}classes/core.blinnphongmaterial.html#alphamode)） | "AlphaMode.Opaque"：不透明(默认)、"AlphaMode.Blend"：透明、"AlphaMode.CutOff"：透明度裁剪 |
+| 渲染双面（[doubleSided](${book.api}classes/core.blinnphongmaterial.html#doublesided)） | true：渲染双面，不进行裁剪、false：背面裁剪，只渲染正面 |
+| 纹理坐标的缩放与偏移（[tilingOffset](${book.api}classes/core.unlitmaterial.html#tilingoffset)） | 是一个 Vector4 数据，分别控制纹理坐标在 uv 方向上的缩放和偏移。 |
 
 
 ##  UnlitMaterial
@@ -98,8 +101,10 @@ const material = renderer.setSharedMaterial(0, material);
 | 参数 | 应用 |
 | :--- | :--- |
 | 基础颜色（[baseColor](${book.api}classes/core.unlitmaterial.html#basecolor) )| **基础颜色 * 基础颜色纹理 = 最后的颜色。** |
-| 基础纹理（[baseColorTexture](${book.api}classes/core.unlitmaterial.html#basecolortexture) )| 搭配基础颜色使用，是个相乘的关系 |
-
+| 基础纹理（[baseColorTexture](${book.api}classes/core.unlitmaterial.html#basecolortexture) )| 搭配基础颜色使用，是个相乘的关系。 |
+| 透明度模式（[alphaMode](${book.api}classes/core.unlitmaterial.html#alphamode)） | "AlphaMode.Opaque"：不透明(默认)、"AlphaMode.Blend"：透明、"AlphaMode.CutOff"：透明度裁剪。 |
+| 渲染双面（[doubleSided](${book.api}classes/core.unlitmaterial.html#doublesided)） | true：渲染双面，不进行裁剪、false：背面裁剪，只渲染正面。 |
+| 纹理坐标的缩放与偏移（[tilingOffset](${book.api}classes/core.unlitmaterial.html#tilingoffset)） | 是一个 Vector4 数据，分别控制纹理坐标在 uv 方向上的缩放和偏移。 |
 
 
 # 常见 QA
