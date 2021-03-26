@@ -203,11 +203,14 @@ target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendF
 // 操作方式为 src + dst  */
 target.colorBlendOperation = target.alphaBlendOperation = BlendOperation.Add;
 
-// 2. 关闭深度写入。
+// 2. 开启颜色混合
+target.enabled = true;
+
+// 3. 关闭深度写入。
 const depthState = renderState.depthState;
 depthState.writeEnabled = false;
 
-// 3. 设置透明渲染队列 （后面会讲为什么）
+// 4. 设置透明渲染队列 （后面会讲为什么）
 material.renderQueueType = RenderQueueType.Transparent;
 ```
 有关渲染状态的更多选项可以分别查看相应的[API 文档](${book.api}classes/core.renderstate-1.html) 
@@ -283,6 +286,7 @@ export class CustomMaterial extends Material{
     const target = this.renderState.blendState.targetBlendState;
     const depthState = this.renderState.depthState;
 
+    target.enabled = true;
     target.sourceColorBlendFactor = target.sourceAlphaBlendFactor = BlendFactor.SourceAlpha;
     target.destinationColorBlendFactor = target.destinationAlphaBlendFactor = BlendFactor.OneMinusSourceAlpha;
     depthState.writeEnabled = false;
