@@ -13,7 +13,7 @@ let camera = cameraEntity.addComponent(Camera)
 
 let controler = cameraEntity.addComponent(OrbitControl);
 controler.autoRotate = true;
-controler.autoRotationAngle = Math.PI / 5;
+controler.autoRotateSpeed = Math.PI / 5;
 controler.minDistance = 4;
 controler.maxDistance = 50;
 ```
