@@ -7,7 +7,7 @@
 ```typescript
 // 获取想要修改的 renderer
 const renderer = entity.getComponent(MeshRenderer);
-// 获取 PBRMaterial
+// 通过 `getMaterial` 获取当前 renderer 的第 i 个材质, 默认第 0 个。
 const material = renderer.getMaterial();
 // 修改材质颜色
 material.baseColor.r = 0;
@@ -22,7 +22,7 @@ const renderer = entity.getComponent(MeshRenderer);
 const material = new BlinnPhongMaterial(engine);
 material.diffuseColor.r = 0;
 
-// 替换 PBRMaterial，赋予 blinn-phong 材质
+// 通过 `setMaterial` 设置当前 renderer 的第 i 个材质, 默认第 0 个。
 const material = renderer.setMaterial(material);
 ```
 
