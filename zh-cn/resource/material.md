@@ -26,7 +26,7 @@ material.diffuseColor.r = 0;
 const material = renderer.setMaterial(material);
 ```
 
-\>> [How to use PBR material](${book.playground}#/use-pbr)
+\>> [How to use PBR material](${book.playground}#/pbr-base)
 
 ## 材质通用属性
 以下属性都可以直接在 [UnlitMaterial](${book.api}classes/core.unlitmaterial.html)、[BlinnPhongMaterial](${book.api}classes/core.blinnphongmaterial.html)、[PBRMaterial](${book.api}classes/core.pbrmaterial.html)、[PBRSpecularMaterial](${book.api}classes/core.pbrspecularmaterial.html) 材质中使用。
